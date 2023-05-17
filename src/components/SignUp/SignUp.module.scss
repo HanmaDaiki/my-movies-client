@@ -1,0 +1,12 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  height: 55vh;
+  justify-content: space-between;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
