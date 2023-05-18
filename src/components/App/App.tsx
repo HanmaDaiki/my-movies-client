@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux/es/exports';
 
@@ -8,15 +8,14 @@ import { Preloader } from '../UI/Preloader/Preloader';
 
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { TUserState } from '../../types/TUserState';
-import { getUser, logOut } from '../../store/userSlice';
+import { getUser } from '../../store/userSlice';
 import { NotFound } from '../NotFound/NotFound';
-import { Header } from '../Header/Header';
 import { Profile } from '../Profile/Profile';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const { isLogged, name, email } = useSelector(
+  const { isLogged } = useSelector(
     (state: { user: TUserState }) => state.user
   );
 

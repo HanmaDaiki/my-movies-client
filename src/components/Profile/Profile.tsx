@@ -16,7 +16,6 @@ import { registerEmail, registerText } from '../../utils/optionsForm';
 const Profile: FC = () => {
   const {
     register,
-    handleSubmit,
     getValues,
     formState: { errors, isValid },
   } = useForm({ mode: 'onBlur' });
