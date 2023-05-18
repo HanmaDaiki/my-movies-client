@@ -23,7 +23,12 @@ const getUser = createAsyncThunk(
 const userSlice = createSlice({ 
   name: 'user', 
   initialState, 
-  reducers: {},
+  reducers: {
+    logOut(state) {
+      localStorage.removeItem('movies-jwt');
+      state.isLogged = false;
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(getUser.fulfilled, (state, actions) => {
       state.email = actions.payload.email;
@@ -34,5 +39,6 @@ const userSlice = createSlice({
 });
 
 const userReducer = userSlice.reducer;
+const {logOut} = userSlice.actions;
 
-export { userReducer, getUser };
+export { userReducer, getUser, logOut };
