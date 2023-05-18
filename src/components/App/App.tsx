@@ -9,6 +9,7 @@ import { Preloader } from '../UI/Preloader/Preloader';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { TUserState } from '../../types/TUserState';
 import { getUser, logOut } from '../../store/userSlice';
+import { NotFound } from '../NotFound/NotFound';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -24,11 +25,12 @@ const App = () => {
   useEffect(() => {
     const token = localStorage.getItem('movies-jwt') || '';
 
-    dispatch(getUser(token))
-      .then((res) => {
-        res.meta.requestStatus === 'fulfilled' ? navigate('/') : navigate('/signin');
-      })
-      .finally(() => setIsLoading(false));
+    if (token === '') {
+      setIsLoading(false)
+      return
+    }
+
+    dispatch(getUser(token)).finally(() => setIsLoading(false));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -63,6 +65,7 @@ const App = () => {
             )
           }
         />
+        <Route path='/*' element={<NotFound />}/>
       </Routes>
     </main>
   );
