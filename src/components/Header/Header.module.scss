@@ -51,6 +51,7 @@
 }
 
 .mobile_menu {
+  display: none;
   width: 75vw;
   height: 100vh;
   background-color: #202020;
@@ -58,7 +59,6 @@
   top: 0;
   right: 0;
   padding: 159px 0 92px;
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
@@ -80,6 +80,10 @@
 }
 
 @media screen and (max-width: 768px) {
+  .mobile_menu {
+    display: flex;
+  }
+  
   .button_menu {
     display: block;
     background-image: url(../../assets/images/icon-burger-menu.svg);

@@ -11,6 +11,7 @@ import { TUserState } from '../../types/TUserState';
 import { getUser, logOut } from '../../store/userSlice';
 import { NotFound } from '../NotFound/NotFound';
 import { Header } from '../Header/Header';
+import { Profile } from '../Profile/Profile';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -18,8 +19,6 @@ const App = () => {
   const { isLogged, name, email } = useSelector(
     (state: { user: TUserState }) => state.user
   );
-
-  const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
 
@@ -44,30 +43,13 @@ const App = () => {
       <Routes>
         <Route
           path='/signin'
-          element={!isLogged ? <SignIn /> : <Navigate to='/' />}
+          element={!isLogged ? <SignIn /> : <Navigate to='/profile' />}
         />
         <Route
           path='/signup'
-          element={!isLogged ? <SignUp /> : <Navigate to='/' />}
+          element={!isLogged ? <SignUp /> : <Navigate to='/profile' />}
         />
-        <Route
-          path='/'
-          element={
-            isLogged ? (
-              <>
-              <Header />
-              <div style={{ color: '#fff', fontSize: '16px' }}>
-                Авторизован, как {name} -- {email}{' '}
-                <button onClick={() => {
-                  dispatch(logOut());
-                  navigate('/signin')
-                  }}>выйти</button>
-              </div></>
-            ) : (
-              <Navigate to='/signin' />
-            )
-          }
-        />
+        <Route path='/profile' element={ isLogged ? <Profile /> : <Navigate to='/signin' />} />
         <Route path='/*' element={<NotFound />}/>
       </Routes>
     </main>

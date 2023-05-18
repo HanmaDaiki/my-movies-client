@@ -1,0 +1,85 @@
+.form {
+  width: 100%;
+  height: 45vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  color: #fff;
+}
+
+.input_container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.input_label {
+  color: #fff;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+}
+
+.input {
+  max-width: 100%;
+  text-align: right;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  color: #fff;
+}
+
+.line {
+  border: 1px solid #424242;
+  width: 100%;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  cursor: pointer;
+}
+
+.exit {
+  color: #ee3465;
+}
+
+.submit {
+  color: #fff;
+}
+
+.error {
+  position: absolute;
+  top: 17px;
+  right: 1px;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ee3456;
+}

@@ -34,7 +34,7 @@ const SignIn: FC = () => {
       const token = localStorage.getItem('movies-jwt') || '';
       res.meta.requestStatus === 'fulfilled' &&
         dispatch(getUser(token)).then((res) => {
-          res.meta.requestStatus === 'fulfilled' && navigate('/');
+          res.meta.requestStatus === 'fulfilled' && navigate('/profile');
         });
     });
   };

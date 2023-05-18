@@ -17,7 +17,7 @@ const NotFound: FC = () => {
       <h1 className={styles.title}>404</h1>
       <span className={styles.text}>Страница не найдена</span>
       <button className={styles.button} onClick={() => 
-        isLogged ? navigate('/') : navigate('/signin')
+        isLogged ? navigate('/profile') : navigate('/signin')
       }>Назад</button>
     </div>
   );
