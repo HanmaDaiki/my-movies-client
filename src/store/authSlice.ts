@@ -32,7 +32,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(signIn.fulfilled, (state, actions) =>  {
+    builder.addCase(signIn.fulfilled, (_, actions) =>  {
       localStorage.setItem('movies-jwt', actions.payload);
     });
   }

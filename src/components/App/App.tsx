@@ -29,6 +29,7 @@ const App = () => {
         res.meta.requestStatus === 'fulfilled' && navigate('/');
       })
       .finally(() => setIsLoading(false));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (isLoading) {
