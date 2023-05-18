@@ -49,6 +49,7 @@ const App = () => {
           element={!isLogged ? <SignUp /> : <Navigate to='/profile' />}
         />
         <Route path='/profile' element={ isLogged ? <Profile /> : <Navigate to='/signin' />} />
+        <Route path='/' element={ isLogged ? <Navigate to='/profile' /> : <Navigate to='/signin' />} />
         <Route path='/*' element={<NotFound />}/>
       </Routes>
     </main>
