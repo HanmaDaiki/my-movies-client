@@ -7,18 +7,44 @@ import { SignButton } from '../UI/SignButton/SignButton';
 import { SignSublink } from '../UI/SignSublink/SignSublink';
 import { SignTitle } from '../UI/SignTitle/SignTitle';
 
-import { registerEmail, registerPassword, registerText } from '../../utils/optionsForm';
+import { signIn, signUp } from '../../store/authSlice';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import {
+  registerEmail,
+  registerPassword,
+  registerText,
+} from '../../utils/optionsForm';
 import styles from './SignUp.module.scss';
+import { getUser } from '../../store/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp: FC = () => {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm({ mode: 'onBlur' });
 
+  const dispatch = useAppDispatch();
+
+  const navigate = useNavigate();
+
   const onSubmit = () => {
-    console.log('data');
+    const name = getValues('name');
+    const email = getValues('email');
+    const password = getValues('password');
+
+    dispatch(signUp({ name, email, password })).then((res) => {
+      res.meta.requestStatus === 'fulfilled' &&
+        dispatch(signIn({ email, password })).then((res) => {
+          const token = localStorage.getItem('movies-jwt') || '';
+          res.meta.requestStatus === 'fulfilled' &&
+            dispatch(getUser(token)).then((res) => {
+              res.meta.requestStatus === 'fulfilled' && navigate('/');
+            });
+        });
+    });
   };
 
   return (

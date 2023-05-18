@@ -20,7 +20,7 @@ export const registerPassword = {
   },
   pattern: {
     value: regex.password,
-    message: 'Только латинские буквы'
+    message: 'Только латинские буквы или цифры'
   }
 }
 
