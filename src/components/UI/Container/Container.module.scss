@@ -8,6 +8,20 @@
     flex-direction: column;
     gap: 40px;
   }
+
+  &.header {
+    padding: 18px 70px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    &.header {
+      padding: 18px 30px;
+    }
+  }
 }
 
 @media screen and (max-width: 401px) {

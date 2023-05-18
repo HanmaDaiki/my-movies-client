@@ -1,0 +1,115 @@
+.header {
+  position: relative;
+}
+
+.left {
+  display: flex;
+  gap: 44px;
+  align-items: center;
+}
+
+.list {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 16px;
+
+  &.mobile {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.link {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.account {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.icon {
+  background-image: url(../../assets/images/icon-profile.svg);
+  height: 30px;
+  width: 30px;
+}
+
+.button_menu {
+  display: none;
+}
+
+.mobile_menu {
+  width: 75vw;
+  height: 100vh;
+  background-color: #202020;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 159px 0 92px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.close_mobile {
+  width: 22px;
+  height: 22px;
+  background-image: url(../../assets/images/icon-close.svg);
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  background-size: cover;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .button_menu {
+    display: block;
+    background-image: url(../../assets/images/icon-burger-menu.svg);
+    width: 44px;
+    height: 44px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  .navigation {
+    display: none;
+
+    &.mobile {
+      display: flex;
+    }
+  }
+
+  .account {
+    display: none;
+
+    &.mobile {
+      display: flex;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .mobile_menu {
+    width: 100vw;
+  }
+}

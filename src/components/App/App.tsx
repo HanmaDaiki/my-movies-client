@@ -10,6 +10,7 @@ import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { TUserState } from '../../types/TUserState';
 import { getUser, logOut } from '../../store/userSlice';
 import { NotFound } from '../NotFound/NotFound';
+import { Header } from '../Header/Header';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -53,13 +54,15 @@ const App = () => {
           path='/'
           element={
             isLogged ? (
-              <div style={{ color: '#fff', fontSize: '56px' }}>
+              <>
+              <Header />
+              <div style={{ color: '#fff', fontSize: '16px' }}>
                 Авторизован, как {name} -- {email}{' '}
                 <button onClick={() => {
                   dispatch(logOut());
                   navigate('/signin')
                   }}>выйти</button>
-              </div>
+              </div></>
             ) : (
               <Navigate to='/signin' />
             )
