@@ -26,7 +26,7 @@ const App = () => {
 
     dispatch(getUser(token))
       .then((res) => {
-        res.meta.requestStatus === 'fulfilled' && navigate('/');
+        res.meta.requestStatus === 'fulfilled' ? navigate('/') : navigate('/signin');
       })
       .finally(() => setIsLoading(false));
   // eslint-disable-next-line react-hooks/exhaustive-deps
