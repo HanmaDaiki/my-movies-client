@@ -23,12 +23,24 @@
     align-items: center;
     gap: 15vh;
   }
+
+  &.movie {
+    padding: 70px 70px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .container {
     &.header {
       padding: 18px 30px;
+    }
+
+    &.movie {
+      padding: 50px 10px 78px;
     }
   }
 }

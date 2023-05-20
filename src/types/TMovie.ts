@@ -1,13 +1,18 @@
 export type TMovie = {
   country: string;
   director: string;
-  duration: string;
+  duration: number;
   year: string;
   description: string;
-  image: string;
+  image: TImage;
   trailerLink: string;
   thumbnail: string;
-  movieId: string;
+  id: number;
   nameRU: string;
   nameEN: string;
+  _id: number;
+}
+
+export type TImage = {
+  url: string;
 }

@@ -11,6 +11,10 @@ import { TUserState } from '../../types/TUserState';
 import { getUser } from '../../store/userSlice';
 import { NotFound } from '../NotFound/NotFound';
 import { Profile } from '../Profile/Profile';
+import { moviesApi } from '../../utils/MoviesApi';
+import { getSavedMovies, setMovies } from '../../store/moviesSlice';
+import { Movies } from '../Movies/Movies';
+import { SavedMovies } from '../SavedMovies/SavedMovies';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -23,6 +27,13 @@ const App = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('movies-jwt') || '';
+    const movies = localStorage.getItem('movies-all') || '';
+
+    dispatch(setMovies(JSON.parse(movies)));
+    dispatch(getSavedMovies(token));
+    if (movies === '') {
+      moviesApi.getMovies().then((res) => localStorage.setItem('movies-all', JSON.stringify(res)));
+    }
 
     if (token === '') {
       setIsLoading(false)
@@ -42,14 +53,16 @@ const App = () => {
       <Routes>
         <Route
           path='/signin'
-          element={!isLogged ? <SignIn /> : <Navigate to='/profile' />}
+          element={!isLogged ? <SignIn /> : <Navigate to='/movies' />}
         />
         <Route
           path='/signup'
-          element={!isLogged ? <SignUp /> : <Navigate to='/profile' />}
+          element={!isLogged ? <SignUp /> : <Navigate to='/movies' />}
         />
         <Route path='/profile' element={ isLogged ? <Profile /> : <Navigate to='/signin' />} />
-        <Route path='/' element={ isLogged ? <Navigate to='/profile' /> : <Navigate to='/signin' />} />
+        <Route path='/movies' element={ isLogged ? <Movies /> : <Navigate to='/signin' />} />
+        <Route path='/saved-movies' element={ isLogged ? <SavedMovies /> : <Navigate to='/signin' />} />
+        <Route path='/' element={ isLogged ? <Navigate to='/movies' /> : <Navigate to='/signin' />} />
         <Route path='/*' element={<NotFound />}/>
       </Routes>
     </main>
