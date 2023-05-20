@@ -28,8 +28,13 @@ const App = () => {
   useEffect(() => {
     const token = localStorage.getItem('movies-jwt') || '';
     const movies = localStorage.getItem('movies-all') || '';
+    try {
+      dispatch(setMovies(JSON.parse(movies)));
+    } catch(err) {
+      console.log(err);
+    }
 
-    dispatch(setMovies(JSON.parse(movies)));
+  
     dispatch(getSavedMovies(token));
     if (movies === '') {
       moviesApi.getMovies().then((res) => localStorage.setItem('movies-all', JSON.stringify(res)));
