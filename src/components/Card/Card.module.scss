@@ -5,6 +5,7 @@
   background-color: #2f2f2f;
   color: #fff;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .left {
@@ -57,6 +58,7 @@
   background-image: url(../../assets/images/icon-like.svg);
   width: 14px;
   height: 12px;
+  cursor: pointer;
   
   &.active {
     background-image: url(../../assets/images/icon-like_active.svg);
@@ -71,6 +73,7 @@
   width: 14px;
   height: 12px;
   background-size: cover;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {

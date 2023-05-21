@@ -11,6 +11,11 @@
   cursor: pointer;
 }
 
+.notFound {
+  font-size: 25px;
+  color: #fff;
+}
+
 @media screen and (max-width: 768px) {
   .more {
     width: 240px;

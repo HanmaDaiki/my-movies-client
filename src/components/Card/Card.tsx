@@ -41,6 +41,8 @@ const Card: FC<IProps> = ({ fromComponent, movie }) => {
   const dispatch = useAppDispatch();
 
   const toggleLike = () => {
+    console.log('click');
+    
     if (!isLiked) {
       dispatch(postSavedMovies({ movie: movie, jwt: token })).then((res) => {
         res.meta.requestStatus === 'fulfilled' &&

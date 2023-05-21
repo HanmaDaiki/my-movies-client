@@ -31,6 +31,12 @@
     gap: 40px;
     align-items: center;
   }
+
+  &.filter {
+    padding: 70px 0 80px;
+    margin: 0 70px;
+    border-bottom: 1px solid #424242;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -41,6 +47,11 @@
 
     &.movie {
       padding: 50px 10px 78px;
+    }
+
+    &.filter {
+      padding: 50px 0 78px;
+      margin: 0 10px;
     }
   }
 }

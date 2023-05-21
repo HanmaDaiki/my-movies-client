@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+import { TFilter } from '../types/TFilter';
 import { TMoviesState } from '../types/TMoviesState';
 import { TMovie } from '../types/TMovie';
 import { mainApi } from '../utils/MainApi';
@@ -7,6 +8,14 @@ import { mainApi } from '../utils/MainApi';
 const initialState: TMoviesState = {
   moviesArray: [],
   savedMoviesArray: [],
+  moviesFilter: {
+    toggle: JSON.parse(localStorage.getItem('movies-filter') || '').toggle,
+    keyWord: JSON.parse(localStorage.getItem('movies-filter') || '').keyWord,
+  },
+  savedMoviesFilter: {
+    toggle: JSON.parse(localStorage.getItem('saved-movies-filter') || '').toggle,
+    keyWord: JSON.parse(localStorage.getItem('saved-movies-filter') || '').keyWord,
+  },
 };
 
 const postSavedMovies = createAsyncThunk(
@@ -55,12 +64,20 @@ const moviesSlice = createSlice({
     addSavedMovie(state, actions) {
       state.savedMoviesArray = [...state.savedMoviesArray, actions.payload];
     },
-    removeSavedMovie(state, actions) {      
+    removeSavedMovie(state, actions) {
       state.savedMoviesArray = [
         ...state.savedMoviesArray.filter(
           (savedMovie) => savedMovie.id !== actions.payload
         ),
       ];
+    },
+    setMoviesFilter(state, actions: { payload: TFilter; type: string }) {
+      state.moviesFilter = actions.payload;
+      localStorage.setItem('movies-filter', JSON.stringify(actions.payload))
+    },
+    setSavedMoviesFilter(state, actions: { payload: TFilter; type: string }) {
+      state.savedMoviesFilter = actions.payload;
+      localStorage.setItem('saved-movies-filter', JSON.stringify(actions.payload))
     },
   },
   extraReducers: (builder) => {
@@ -72,7 +89,13 @@ const moviesSlice = createSlice({
 });
 
 const moviesReducer = moviesSlice.reducer;
-const { setMovies, addSavedMovie, removeSavedMovie } = moviesSlice.actions;
+const {
+  setMovies,
+  addSavedMovie,
+  removeSavedMovie,
+  setMoviesFilter,
+  setSavedMoviesFilter,
+} = moviesSlice.actions;
 
 export {
   moviesReducer,
@@ -81,5 +104,7 @@ export {
   getSavedMovies,
   addSavedMovie,
   deleteSavedMovie,
-  removeSavedMovie
+  removeSavedMovie,
+  setMoviesFilter,
+  setSavedMoviesFilter,
 };
