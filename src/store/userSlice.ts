@@ -38,6 +38,8 @@ const userSlice = createSlice({
   reducers: {
     logOut(state) {
       localStorage.removeItem('movies-jwt');
+      localStorage.removeItem('movies-all');
+      localStorage.removeItem('movies-saved');
       state.isLogged = false;
     }
   },

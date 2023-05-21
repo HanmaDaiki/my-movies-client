@@ -26,26 +26,30 @@ const App = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const token = localStorage.getItem('movies-jwt') || '';
     const movies = localStorage.getItem('movies-all') || '';
+
+    if (movies === '') {
+      moviesApi.getMovies().then((res) =>{
+        dispatch(setMovies(res));
+        localStorage.setItem('movies-all', JSON.stringify(res))
+      });
+    }
+
+    const token = localStorage.getItem('movies-jwt') || '';
+
+    dispatch(getUser(token)).finally(() => setIsLoading(false));
+    dispatch(getSavedMovies(token));
+
     try {
       dispatch(setMovies(JSON.parse(movies)));
     } catch(err) {
       console.log(err);
     }
 
-  
-    dispatch(getSavedMovies(token));
-    if (movies === '') {
-      moviesApi.getMovies().then((res) => localStorage.setItem('movies-all', JSON.stringify(res)));
-    }
-
     if (token === '') {
       setIsLoading(false)
       return
     }
-
-    dispatch(getUser(token)).finally(() => setIsLoading(false));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
