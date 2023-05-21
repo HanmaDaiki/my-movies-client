@@ -6,11 +6,13 @@ import { Header } from '../Header/Header';
 import { Card } from '../Card/Card';
 
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { getSavedMovies } from '../../store/moviesSlice';
+import { getSavedMovies, setMoviesFilter } from '../../store/moviesSlice';
 import { TMoviesState } from '../../types/TMoviesState';
 import styles from './Movies.module.scss';
 import { Filter } from '../Filter/Filter';
 import { TMovie } from '../../types/TMovie';
+import { TFilter } from '../../types/TFilter';
+import { guardStorageData } from '../../utils/guardStorageData';
 
 const Movies: FC = () => {
   const [moviesRenderCounter, setMoviesRenderCounter] = useState(3);
@@ -22,6 +24,12 @@ const Movies: FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    const loadSaveFilter: TFilter = guardStorageData(localStorage.getItem('movies-filter'));
+
+    if (loadSaveFilter) {  
+      dispatch(setMoviesFilter(loadSaveFilter));
+    }
+
     if (moviesArray.length === 0) {
       const token = localStorage.getItem('movies-jwt') || '';
 

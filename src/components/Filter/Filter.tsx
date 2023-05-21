@@ -34,7 +34,7 @@ const Filter: FC<IProps> = ({ fromComponent }) => {
     }
     
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []) 
+  }, [moviesFilter, savedMoviesFilter]) 
 
   const dispatch = useAppDispatch();
 

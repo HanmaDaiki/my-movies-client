@@ -9,6 +9,10 @@ import { Card } from '../Card/Card';
 import { TMoviesState } from '../../types/TMoviesState';
 import styles from './SavedMovies.module.scss';
 import { TMovie } from '../../types/TMovie';
+import { TFilter } from '../../types/TFilter';
+import { setSavedMoviesFilter } from '../../store/moviesSlice';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { guardStorageData } from '../../utils/guardStorageData';
 
 const SavedMovies: FC = () => {
   const [moviesRenderCounter, setMoviesRenderCounter] = useState(3);
@@ -17,6 +21,8 @@ const SavedMovies: FC = () => {
   const { savedMoviesArray, savedMoviesFilter } = useSelector(
     (state: { movies: TMoviesState }) => state.movies
   );
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const filtering = savedMoviesArray.filter((movie) => {
@@ -37,6 +43,15 @@ const SavedMovies: FC = () => {
     setFilteredArray(filtering);
     setMoviesRenderCounter(3);
   }, [savedMoviesFilter, savedMoviesArray]);
+
+  useEffect(() => {
+    const loadSaveFilter: TFilter = guardStorageData(localStorage.getItem('saved-movies-filter'));
+
+    if (loadSaveFilter) {
+      dispatch(setSavedMoviesFilter(loadSaveFilter));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>

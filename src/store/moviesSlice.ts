@@ -9,12 +9,12 @@ const initialState: TMoviesState = {
   moviesArray: [],
   savedMoviesArray: [],
   moviesFilter: {
-    toggle: JSON.parse(localStorage.getItem('movies-filter') || '').toggle,
-    keyWord: JSON.parse(localStorage.getItem('movies-filter') || '').keyWord,
+    toggle: false,
+    keyWord: '',
   },
   savedMoviesFilter: {
-    toggle: JSON.parse(localStorage.getItem('saved-movies-filter') || '').toggle,
-    keyWord: JSON.parse(localStorage.getItem('saved-movies-filter') || '').keyWord,
+    toggle: false,
+    keyWord: '',
   },
 };
 
