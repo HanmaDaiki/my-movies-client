@@ -42,7 +42,7 @@ const Card: FC<IProps> = ({ fromComponent, movie }) => {
 
   const toggleLike = () => {
     console.log('click');
-    
+
     if (!isLiked) {
       dispatch(postSavedMovies({ movie: movie, jwt: token })).then((res) => {
         res.meta.requestStatus === 'fulfilled' &&
@@ -51,10 +51,12 @@ const Card: FC<IProps> = ({ fromComponent, movie }) => {
       return;
     }
 
-    dispatch(deleteSavedMovie({ id: savedMovie[0]._id, jwt: token })).then((res) =>{
+    dispatch(deleteSavedMovie({ id: savedMovie[0]._id, jwt: token })).then(
+      (res) => {
         res.meta.requestStatus === 'fulfilled' &&
-        dispatch(removeSavedMovie(movie.id))
-    });
+          dispatch(removeSavedMovie(movie.id));
+      }
+    );
   };
 
   return (
@@ -68,13 +70,19 @@ const Card: FC<IProps> = ({ fromComponent, movie }) => {
         </div>
         <button
           onClick={toggleLike}
-          className={fromComponent === 'movies' ? cn(styles.like, isLiked && styles.active) : styles.remove}
+          className={
+            fromComponent === 'movies'
+              ? cn(styles.like, isLiked && styles.active)
+              : styles.remove
+          }
         />
       </div>
-      <img
-        className={styles.image}
-        src={`https://api.nomoreparties.co/${movie.image.url || movie.image}`}
-      />
+      <a href={movie.trailerLink} target='_blank'>
+        <img
+          className={styles.image}
+          src={`https://api.nomoreparties.co/${movie.image.url || movie.image}`}
+        />
+      </a>
     </article>
   );
 };
