@@ -13,6 +13,7 @@ import { TFilter } from '../../types/TFilter';
 import { setSavedMoviesFilter } from '../../store/moviesSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { guardStorageData } from '../../utils/guardStorageData';
+import { Footer } from '../Footer/Footer';
 
 const SavedMovies: FC = () => {
   const [moviesRenderCounter, setMoviesRenderCounter] = useState(3);
@@ -88,6 +89,7 @@ const SavedMovies: FC = () => {
           )}
         </Container>
       </section>
+      <Footer />
     </>
   );
 };

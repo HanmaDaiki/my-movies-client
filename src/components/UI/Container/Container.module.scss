@@ -37,6 +37,12 @@
     margin: 0 70px;
     border-bottom: 1px solid #424242;
   }
+
+  &.footer {
+    padding: 79px 70px 20px;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -52,6 +58,10 @@
     &.filter {
       padding: 50px 0 78px;
       margin: 0 10px;
+    }
+
+    &.footer {
+      padding: 79px 10px 20px;
     }
   }
 }

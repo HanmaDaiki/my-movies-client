@@ -13,6 +13,7 @@ import { Filter } from '../Filter/Filter';
 import { TMovie } from '../../types/TMovie';
 import { TFilter } from '../../types/TFilter';
 import { guardStorageData } from '../../utils/guardStorageData';
+import { Footer } from '../Footer/Footer';
 
 const Movies: FC = () => {
   const [moviesRenderCounter, setMoviesRenderCounter] = useState(3);
@@ -89,6 +90,7 @@ const Movies: FC = () => {
           )}
         </Container>
       </section>
+      <Footer />
     </>
   );
 };
