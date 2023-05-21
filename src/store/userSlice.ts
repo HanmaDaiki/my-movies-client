@@ -40,6 +40,8 @@ const userSlice = createSlice({
       localStorage.removeItem('movies-jwt');
       localStorage.removeItem('movies-all');
       localStorage.removeItem('movies-saved');
+      localStorage.removeItem('movies-filter');
+      localStorage.removeItem('saved-movies-filter');
       state.isLogged = false;
     }
   },
